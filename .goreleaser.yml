@@ -11,6 +11,7 @@ builds:
       - CGO_ENABLED=0
     goos:
       - windows
+    main: ./src/app/main.go
 archives:
   - replacements:
       darwin: Darwin
