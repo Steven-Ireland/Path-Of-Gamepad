@@ -1,11 +1,12 @@
 package main
 
 import (
-	"config"
-	"controllers"
 	"math"
 	"strings"
 	"time"
+
+	"github.com/Steven-Ireland/path-of-gamepad/config"
+	"github.com/Steven-Ireland/path-of-gamepad/controllers"
 
 	"github.com/go-gl/glfw/v3.3/glfw"
 	"github.com/go-vgo/robotgo"
