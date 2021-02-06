@@ -1,0 +1,16 @@
+buttons:
+  a: LeftClick
+  b: ""
+  back: esc
+  bumper_left: "1"
+  bumper_right: RightClick
+  dpad_down: "3"
+  dpad_left: "4"
+  dpad_right: "5"
+  dpad_up: "2"
+  start: i
+  x: ""
+  "y": ""
+held:
+- bumper_right
+- "x"
