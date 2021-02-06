@@ -1,8 +1,10 @@
 name: release
 
-# Run this workflow every time a new commit pushed to your repository
-on: push
-
+on:
+  push:
+    tags:
+    - '*'
+    
 jobs:
   # Set the job key. The key is displayed as the job name
   # when a job name is not provided
@@ -24,6 +26,17 @@ jobs:
 
       - name: Run build
         run: go build .
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
         
       - name: Upload Release Asset
         id: upload-release-asset 
