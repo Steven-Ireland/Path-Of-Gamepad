@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"errors"
+
 	"github.com/go-gl/glfw/v3.3/glfw"
 )
 
@@ -74,7 +76,7 @@ func IsDeadZone(axes Vector2) bool {
 	return axes.Y == 0 && axes.X == 0
 }
 
-func Read(gamepad Gamepad, lastInput Input) Input {
+func Read(gamepad Gamepad, lastInput Input) (Input, error) {
 	joy := glfw.Joystick(gamepad.Id)
 
 	axes := joy.GetAxes()
@@ -99,7 +101,9 @@ func Read(gamepad Gamepad, lastInput Input) Input {
 		}
 	}
 
-	// fmt.Printf("Axes: %v\n", axes)
+	if len(axes) == 0 {
+		return input, errors.New("ControllerMissing")
+	}
 
 	input.DPad.Up = button(10)
 	input.DPad.Up_PRESS = input.DPad.Up && !lastInput.DPad.Up
@@ -148,5 +152,5 @@ func Read(gamepad Gamepad, lastInput Input) Input {
 	input.Right.Bumper_UNPRESS = !input.Right.Bumper && lastInput.Right.Bumper
 	input.Right.Trigger = float64(axes[5]) // right trigger
 
-	return input
+	return input, nil
 }

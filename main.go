@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"strings"
 	"time"
@@ -65,12 +66,18 @@ func main() {
 
 	config.Load()
 
-	gamepad := controllers.Gamepad{glfw.Joystick1, 0.17}
+	gamepad := controllers.Gamepad{glfw.Joystick1, config.DeadZonePercentage()}
 	lastInput := controllers.Input{}
 
 	for {
 		glfw.PollEvents()
-		input := controllers.Read(gamepad, lastInput)
+		input, err := controllers.Read(gamepad, lastInput)
+		if err != nil {
+			fmt.Println("Error reading from controller - is it plugged in?")
+			time.Sleep(5 * time.Second)
+			continue
+		}
+
 		var holding = someButtonHeld(input)
 
 		if holding && !controllers.IsDeadZone(input.Right.Direction) && !controllers.IsDeadZone(input.Left.Direction) {
