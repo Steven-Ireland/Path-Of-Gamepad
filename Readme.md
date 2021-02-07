@@ -1,6 +1,6 @@
 See it in action: https://www.youtube.com/watch?v=_aU_xkLx5eg
 
-![](https://media0.giphy.com/media/LSFB29dKFn7SRgdZ2q/giphy.gif)
+![](img/usage_example.gif)
 
 The gist of it is that the left stick moves your character, and the right stick moves your mouse. I've set it up in a way that feels pretty good to use by allowing you to move in one direction, aim with the right stick, and cast. The program flicks your mouse to the aimed position and returns it to the original movement position after, letting you move in a pretty similar way as you can with a typical mouse + kb. 
 
