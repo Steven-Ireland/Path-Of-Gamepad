@@ -145,7 +145,7 @@ func main() {
 				safeToggleMouseLeft("down")
 				robotgo.DragMouse(
 					(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
-					(int)(float64(config.ScreenWidth())/2-screenAdjustmentY)-config.CharacterOffsetY(),
+					(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 				)
 			}
 		} else if holding && !controllers.IsDeadZone(input.Right.Direction) {
@@ -155,7 +155,7 @@ func main() {
 			var screenAdjustmentY = math.Sin(angle) * float64(config.WalkCircleRadius())
 			robotgo.MoveMouse(
 				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
-				(int)(float64(config.ScreenWidth())/2-screenAdjustmentY)-config.CharacterOffsetY(),
+				(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 			)
 		}
 

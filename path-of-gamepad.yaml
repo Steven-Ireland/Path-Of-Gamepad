@@ -7,12 +7,12 @@ settings:
   free_mouse_sensitivity_px: 8 # Max speed in pixels while free mousing
   dead_zone_percentage: 0.17 # Radius of controller joystick deadzone 
 buttons:
-  a: LeftClick
+  a: LeftClick # LeftClick and RightClick are special and are only supported on a/b/x/y/bumper_right/bumper_left
   b: ""
   x: ""
   y: ""
-  back: esc
-  bumper_left: "1"
+  back: esc # Extra keys can be found here: https://github.com/go-vgo/robotgo/blob/master/docs/keys.md
+  bumper_left: "1" # Multiple keybinds can be added to a single button with comma separation, i.e "1,2,3", but it's against the rules
   bumper_right: RightClick
   dpad_down: "3"
   dpad_left: "4"
