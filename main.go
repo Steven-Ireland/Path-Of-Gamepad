@@ -12,14 +12,6 @@ import (
 	"github.com/go-vgo/robotgo"
 )
 
-const SCREEN_RESOLUTION_X = 2560
-const SCREEN_RESOLUTION_Y = 1440
-const SCREEN_Y_OFFSET = 100
-
-const WALK_RADIUS = 250
-const TARGET_RADIUS = 250
-const FREE_SENSITIVITY = 8
-
 var leftMousePosition = "up"
 var rightMousePosition = "up"
 
@@ -83,12 +75,12 @@ func main() {
 
 		if holding && !controllers.IsDeadZone(input.Right.Direction) && !controllers.IsDeadZone(input.Left.Direction) {
 			var angle = math.Atan2(input.Right.Direction.Y, input.Right.Direction.X)
-			var screenAdjustmentX = math.Cos(angle) * TARGET_RADIUS
-			var screenAdjustmentY = math.Sin(angle) * TARGET_RADIUS
+			var screenAdjustmentX = math.Cos(angle) * float64(config.AttackCircleRadius())
+			var screenAdjustmentY = math.Sin(angle) * float64(config.AttackCircleRadius())
 
 			robotgo.MoveMouse(
-				(int)(SCREEN_RESOLUTION_X/2+screenAdjustmentX),
-				(int)(SCREEN_RESOLUTION_Y/2-screenAdjustmentY)-SCREEN_Y_OFFSET,
+				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
+				(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 			)
 			time.Sleep(50 * time.Millisecond)
 		}
@@ -134,8 +126,8 @@ func main() {
 			if controllers.IsDeadZone(input.Left.Direction) && !controllers.IsDeadZone(input.Right.Direction) {
 				safeToggleMouseLeft("up")
 
-				var screenAdjustmentX = input.Right.Direction.X * FREE_SENSITIVITY
-				var screenAdjustmentY = -1 * input.Right.Direction.Y * FREE_SENSITIVITY
+				var screenAdjustmentX = input.Right.Direction.X * float64(config.FreeMouseSensitivity())
+				var screenAdjustmentY = -1 * input.Right.Direction.Y * float64(config.FreeMouseSensitivity())
 
 				robotgo.MoveRelative((int)(screenAdjustmentX), (int)(screenAdjustmentY))
 			} else if controllers.IsDeadZone(input.Left.Direction) {
@@ -147,23 +139,23 @@ func main() {
 			} else {
 				var angle = math.Atan2(input.Left.Direction.Y, input.Left.Direction.X)
 
-				var screenAdjustmentX = math.Cos(angle) * WALK_RADIUS
-				var screenAdjustmentY = math.Sin(angle) * WALK_RADIUS
+				var screenAdjustmentX = math.Cos(angle) * float64(config.WalkCircleRadius())
+				var screenAdjustmentY = math.Sin(angle) * float64(config.WalkCircleRadius())
 
 				safeToggleMouseLeft("down")
 				robotgo.DragMouse(
-					(int)(SCREEN_RESOLUTION_X/2+screenAdjustmentX),
-					(int)(SCREEN_RESOLUTION_Y/2-screenAdjustmentY)-SCREEN_Y_OFFSET,
+					(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
+					(int)(float64(config.ScreenWidth())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 				)
 			}
 		} else if holding && !controllers.IsDeadZone(input.Right.Direction) {
 			var angle = math.Atan2(input.Right.Direction.Y, input.Right.Direction.X)
 
-			var screenAdjustmentX = math.Cos(angle) * WALK_RADIUS
-			var screenAdjustmentY = math.Sin(angle) * WALK_RADIUS
+			var screenAdjustmentX = math.Cos(angle) * float64(config.WalkCircleRadius())
+			var screenAdjustmentY = math.Sin(angle) * float64(config.WalkCircleRadius())
 			robotgo.MoveMouse(
-				(int)(SCREEN_RESOLUTION_X/2+screenAdjustmentX),
-				(int)(SCREEN_RESOLUTION_Y/2-screenAdjustmentY)-SCREEN_Y_OFFSET,
+				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
+				(int)(float64(config.ScreenWidth())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 			)
 		}
 

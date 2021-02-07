@@ -1,6 +1,16 @@
+settings:
+  screen_width_px: 1920
+  screen_height_px: 1080
+  character_y_offset_px: 100 # Character is slightly higher than the screen center
+  walk_circle_radius_px: 250 # Radius of walk circle
+  attack_circle_radius_px: 250 # While attacking with a "holdable" key, radius can changes
+  free_mouse_sensitivity_px: 8 # Max speed in pixels while free mousing
+  dead_zone_percentage: 0.17 # Radius of controller joystick deadzone 
 buttons:
   a: LeftClick
   b: ""
+  x: ""
+  y: ""
   back: esc
   bumper_left: "1"
   bumper_right: RightClick
@@ -9,8 +19,8 @@ buttons:
   dpad_right: "5"
   dpad_up: "2"
   start: i
-  x: ""
-  "y": ""
-held:
+
+# Designating a key as "held" is the difference between a flask (activates, 
+# doesn't impact movement), and a main skill (which you want to aim, stop and hold, etc)
+held: 
 - bumper_right
-- "x"
