@@ -4,11 +4,11 @@ See it in action: https://www.youtube.com/watch?v=_aU_xkLx5eg
 
 The gist of it is that the left stick moves your character, and the right stick moves your mouse. I've set it up in a way that feels pretty good to use by allowing you to move in one direction, aim with the right stick, and cast. The program flicks your mouse to the aimed position and returns it to the original movement position after, letting you move in a pretty similar way as you can with a typical mouse + kb. 
 
-Configuration options can be found in the path-of-gamepad.yaml file created when the app is launched (the file will be created in the same directory as the executable). By default, right click is bound to right bumper, flasks are bound to the D-Pad and left bumper, escape is back, and opening the inventory is start. Left click is performed automatically with the left stick but can also be 'clicked' as needed (menus, items) with "A". 
+Configuration options can be found in the path-of-gamepad.yaml file created when the app is launched (the file will be created in the same directory as the executable, or created manually). By default, right click is bound to right bumper, flasks are bound to the D-Pad and left bumper, escape is back, and opening the inventory is start. Left click is performed automatically with the left stick but can also be 'clicked' as needed (menus, items) with "A". 
 
 ```yaml
 settings:
-  screen_width_px: 1920
+  screen_width_px: 1920 # Make sure to adjust your screen resolution to match your monitor!
   screen_height_px: 1080
   character_y_offset_px: 100 # Character is slightly higher than the screen center
   walk_circle_radius_px: 250 # Radius of walk circle
