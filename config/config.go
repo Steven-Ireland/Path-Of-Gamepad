@@ -9,18 +9,20 @@ import (
 
 func Load() {
 	viper.SetDefault("buttons", map[string]string{
-		"a":            "LeftClick",
-		"b":            "",
-		"x":            "",
-		"y":            "",
-		"bumper_right": "RightClick",
-		"bumper_left":  "1",
-		"back":         "esc",
-		"start":        "i",
-		"dpad_up":      "2",
-		"dpad_down":    "3",
-		"dpad_left":    "4",
-		"dpad_right":   "5",
+		"a":             "LeftClick",
+		"b":             "",
+		"x":             "",
+		"y":             "MiddleClick",
+		"bumper_right":  "RightClick",
+		"bumper_left":   "1",
+		"back":          "esc",
+		"start":         "i",
+		"dpad_up":       "2",
+		"dpad_down":     "3",
+		"dpad_left":     "4",
+		"dpad_right":    "5",
+		"trigger_right": "shift",
+		"trigger_left":  "control",
 	})
 	viper.SetDefault("held", []string{
 		"bumper_right",
@@ -54,6 +56,15 @@ func Buttons() map[string]string {
 
 func Holdable() []string {
 	return viper.GetStringSlice("held")
+}
+
+func IsKeyHoldable(button string) bool {
+	for _, b := range Holdable() {
+		if b == button {
+			return true
+		}
+	}
+	return false
 }
 
 func ScreenWidth() int {

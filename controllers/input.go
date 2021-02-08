@@ -20,13 +20,15 @@ type Input struct {
 }
 
 type Analog struct {
-	Direction      Vector2
-	Hold           bool
-	Hold_PRESS     bool
-	Bumper         bool
-	Bumper_PRESS   bool
-	Bumper_UNPRESS bool
-	Trigger        float64
+	Direction       Vector2
+	Hold            bool
+	Hold_PRESS      bool
+	Bumper          bool
+	Bumper_PRESS    bool
+	Bumper_UNPRESS  bool
+	Trigger         float64
+	Trigger_PRESS   bool
+	Trigger_UNPRESS bool
 }
 
 type DPad struct {
@@ -143,7 +145,9 @@ func Read(gamepad Gamepad, lastInput Input) (Input, error) {
 	input.Left.Bumper = button(4)     // left bumper
 	input.Left.Bumper_PRESS = input.Left.Bumper && !lastInput.Left.Bumper
 	input.Left.Bumper_UNPRESS = !input.Left.Bumper && lastInput.Left.Bumper
-	input.Left.Trigger = float64(axes[4]) // right trigger
+	input.Left.Trigger = float64(axes[4]) // left trigger
+	input.Left.Trigger_PRESS = input.Left.Trigger >= -0.8 && lastInput.Left.Trigger < -0.8
+	input.Left.Trigger_UNPRESS = input.Left.Trigger <= -0.8 && lastInput.Left.Trigger > -0.8
 
 	input.Right.Direction = axis(2, 3) // right thumb
 	input.Right.Hold = button(9)       // right thumb pressed
@@ -151,6 +155,8 @@ func Read(gamepad Gamepad, lastInput Input) (Input, error) {
 	input.Right.Bumper_PRESS = input.Right.Bumper && !lastInput.Right.Bumper
 	input.Right.Bumper_UNPRESS = !input.Right.Bumper && lastInput.Right.Bumper
 	input.Right.Trigger = float64(axes[5]) // right trigger
+	input.Right.Trigger_PRESS = input.Right.Trigger >= -0.8 && lastInput.Right.Trigger < -0.8
+	input.Right.Trigger_UNPRESS = input.Right.Trigger <= -0.8 && lastInput.Right.Trigger > -0.8
 
 	return input, nil
 }

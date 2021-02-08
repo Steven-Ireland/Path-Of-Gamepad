@@ -15,11 +15,19 @@ import (
 
 var leftMousePosition = "up"
 var rightMousePosition = "up"
+var middleMousePosition = "up"
 
 func safeToggleMouseLeft(toggleTo string) {
 	if leftMousePosition != toggleTo {
 		leftMousePosition = toggleTo
 		robotgo.MouseToggle(toggleTo)
+	}
+}
+
+func safeToggleMouseMiddle(toggleTo string) {
+	if middleMousePosition != toggleTo {
+		middleMousePosition = toggleTo
+		robotgo.MouseToggle(toggleTo, "center")
 	}
 }
 
@@ -102,7 +110,7 @@ func main() {
 			HandleMultiActions("x", input.X_UNPRESS)
 		}
 		if input.Y_PRESS || input.Y_UNPRESS {
-			HandleMultiActions("y", input.X_UNPRESS)
+			HandleMultiActions("y", input.Y_UNPRESS)
 		}
 		if input.Start_PRESS {
 			HandleMultiActions("start", false)
@@ -115,6 +123,12 @@ func main() {
 		}
 		if input.Right.Bumper_PRESS || input.Right.Bumper_UNPRESS {
 			HandleMultiActions("bumper_right", input.Right.Bumper_UNPRESS)
+		}
+		if input.Left.Trigger_PRESS || input.Left.Trigger_UNPRESS {
+			HandleMultiActions("trigger_left", input.Left.Trigger_UNPRESS)
+		}
+		if input.Right.Trigger_PRESS || input.Right.Trigger_UNPRESS {
+			HandleMultiActions("trigger_right", input.Right.Trigger_UNPRESS)
 		}
 		if input.DPad.Up_PRESS {
 			HandleMultiActions("dpad_up", false)
@@ -176,12 +190,12 @@ func HandleMultiActions(button string, unpressed bool) {
 	if len(config.Buttons()[button]) > 0 {
 		actions := strings.Split(config.Buttons()[button], ",")
 		for _, a := range actions {
-			HandleAction(a, unpressed)
+			HandleAction(a, config.IsKeyHoldable(button), unpressed)
 		}
 	}
 }
 
-func HandleAction(action string, unpressed bool) {
+func HandleAction(action string, holdable bool, unpressed bool) {
 	switch action {
 	case "RightClick":
 		if unpressed {
@@ -195,7 +209,21 @@ func HandleAction(action string, unpressed bool) {
 		} else {
 			safeToggleMouseLeft("down")
 		}
+	case "MiddleClick":
+		if unpressed {
+			safeToggleMouseMiddle("up")
+		} else {
+			safeToggleMouseMiddle("down")
+		}
 	default:
-		robotgo.KeyTap(action)
+		if holdable {
+			if unpressed {
+				robotgo.KeyToggle(action, "up")
+			} else {
+				robotgo.KeyToggle(action, "down")
+			}
+		} else if unpressed == false {
+			robotgo.KeyTap(action)
+		}
 	}
 }

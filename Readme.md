@@ -16,10 +16,11 @@ settings:
   free_mouse_sensitivity_px: 8 # Max speed in pixels while free mousing
   dead_zone_percentage: 0.17 # Radius of controller joystick deadzone 
 buttons:
-  a: LeftClick # LeftClick and RightClick are special and are only supported on a/b/x/y/bumper_right/bumper_left
-  b: ""
-  x: ""
-  y: ""
+  # a,b,x,y need to be quoted
+  'a': LeftClick # LeftClick and RightClick are special and are only supported on a/b/x/y/bumper_right/bumper_left
+  'b': ""
+  'x': ""
+  'y': "MiddleClick"
   back: esc # Extra keys can be found here: https://github.com/go-vgo/robotgo/blob/master/docs/keys.md
   bumper_left: "1" # Multiple keybinds can be added to a single button with comma separation, i.e "1,2,3", but it's against the rules
   bumper_right: RightClick
@@ -27,12 +28,17 @@ buttons:
   dpad_left: "4"
   dpad_right: "5"
   dpad_up: "2"
+  trigger_right: "shift"
+  trigger_left: "control"
   start: i
 
 # Designating a key as "held" is the difference between a flask (activates, 
 # doesn't impact movement), and a main skill (which you want to aim, stop and hold, etc)
 held: 
 - bumper_right
+- trigger_right
+- trigger_left
+
 ```
 
 Feel free to post any issues, PRs, feature requests - no promises I'll be able to get to them all (I also have a day job!) but I'll try my best to fix anything glaring asap. 
