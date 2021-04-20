@@ -163,7 +163,10 @@ func main() {
 				var screenAdjustmentX = math.Cos(angle) * float64(config.WalkCircleRadius())
 				var screenAdjustmentY = math.Sin(angle) * float64(config.WalkCircleRadius())
 
-				safeToggleMouseLeft("down")
+				if !holding {
+					safeToggleMouseLeft("down")
+				}
+
 				robotgo.DragMouse(
 					(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
 					(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
