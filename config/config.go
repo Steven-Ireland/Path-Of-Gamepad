@@ -31,6 +31,7 @@ func Load() {
 		"screen_width_px":           "1920",
 		"screen_height_px":          "1080",
 		"character_y_offset_px":     "100",
+		"character_x_offset_px":     "0",
 		"walk_circle_radius_px":     "250",
 		"attack_circle_radius_px":   "250",
 		"free_mouse_sensitivity_px": "8",
@@ -92,6 +93,16 @@ func CharacterOffsetY() int {
 	if err != nil {
 		fmt.Printf("Error reading character_y_offset_px, value %s is not an integer\n", err)
 		i = 100
+	}
+
+	return i
+}
+
+func CharacterOffsetX() int {
+	i, err := strconv.Atoi(viper.GetStringMapString("settings")["character_x_offset_px"])
+	if err != nil {
+		fmt.Printf("Error reading character_x_offset_px, value %s is not an integer\n", err)
+		i = 0
 	}
 
 	return i

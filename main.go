@@ -94,7 +94,7 @@ func main() {
 			var screenAdjustmentY = math.Sin(angle) * float64(config.AttackCircleRadius())
 
 			robotgo.MoveMouse(
-				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
+				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX)+config.CharacterOffsetX(),
 				(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 			)
 			time.Sleep(50 * time.Millisecond)
@@ -168,7 +168,7 @@ func main() {
 				}
 
 				robotgo.DragMouse(
-					(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
+					(int)(float64(config.ScreenWidth())/2+screenAdjustmentX)+config.CharacterOffsetX(),
 					(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 				)
 			}
@@ -178,7 +178,7 @@ func main() {
 			var screenAdjustmentX = math.Cos(angle) * float64(config.WalkCircleRadius())
 			var screenAdjustmentY = math.Sin(angle) * float64(config.WalkCircleRadius())
 			robotgo.MoveMouse(
-				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX),
+				(int)(float64(config.ScreenWidth())/2+screenAdjustmentX)+config.CharacterOffsetX(),
 				(int)(float64(config.ScreenHeight())/2-screenAdjustmentY)-config.CharacterOffsetY(),
 			)
 		}

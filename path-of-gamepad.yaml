@@ -2,6 +2,7 @@ settings:
   screen_width_px: 1920
   screen_height_px: 1080
   character_y_offset_px: 100 # Character is slightly higher than the screen center
+  character_x_offset_px: 0 # Adjust walk circle center left or right
   walk_circle_radius_px: 250 # Radius of walk circle
   attack_circle_radius_px: 250 # While attacking with a "holdable" key, radius can changes
   free_mouse_sensitivity_px: 8 # Max speed in pixels while free mousing
