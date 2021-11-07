@@ -112,6 +112,12 @@ func main() {
 		if input.Y_PRESS || input.Y_UNPRESS {
 			HandleMultiActions("y", input.Y_UNPRESS)
 		}
+		if input.Left.Button_PRESS || input.Left.Button_UNPRESS {
+			HandleMultiActions("stick_button_left", input.Left.Button_UNPRESS)
+		}
+		if input.Right.Button_PRESS || input.Right.Button_UNPRESS {
+			HandleMultiActions("stick_button_right", input.Right.Button_UNPRESS)
+		}
 		if input.Start_PRESS {
 			HandleMultiActions("start", false)
 		}
@@ -226,6 +232,7 @@ func HandleAction(action string, holdable bool, unpressed bool) {
 				robotgo.KeyToggle(action, "down")
 			}
 		} else if unpressed == false {
+			fmt.Println(action)
 			robotgo.KeyTap(action)
 		}
 	}
