@@ -9,8 +9,8 @@ buttons:
   dpad_right: "5"
   dpad_up: "2"
   start: i
-  stick_button_left: "R"
-  stick_button_right: "T"
+  stick_button_left: ""
+  stick_button_right: ""
   trigger_left: control
   trigger_right: shift
   x: ""
