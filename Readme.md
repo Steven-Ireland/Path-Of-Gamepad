@@ -24,6 +24,8 @@ buttons:
   back: esc # Extra keys can be found here: https://github.com/go-vgo/robotgo/blob/master/docs/keys.md
   bumper_left: "1" # Multiple keybinds can be added to a single button with comma separation, i.e "1,2,3", but it's against the rules
   bumper_right: RightClick
+  stick_button_left: ""
+  stick_button_right: ""
   dpad_down: "3"
   dpad_left: "4"
   dpad_right: "5"
