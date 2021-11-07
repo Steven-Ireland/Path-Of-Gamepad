@@ -232,7 +232,6 @@ func HandleAction(action string, holdable bool, unpressed bool) {
 				robotgo.KeyToggle(action, "down")
 			}
 		} else if unpressed == false {
-			fmt.Println(action)
 			robotgo.KeyTap(action)
 		}
 	}
